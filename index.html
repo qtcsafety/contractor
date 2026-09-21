@@ -1,13 +1,29 @@
-<!DOCTYPE html> 
-<html lang="th"> 
-<head> 
-<base target="_top"> 
-<meta charset="UTF-8"> 
-<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-<title>ขอทำบัตรผู้รับเหมา QTC</title> 
-</head> 
-<body> 
-<iframe style="width: 100%; height: 100vh;" scrolling="yes" src="https://script.google.com/macros/s/AKfycbxs3Y8qIgRbb5S7RB4uRaDjhiCDP5zwNaytah-eh9fdbQ_0xGq634xgYxt0vDKl1sMM/exec" frameborder="0"></iframe> 
-</body> 
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<base target="_top">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ขอทำบัตรผู้รับเหมา QTC</title>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; }
+  iframe { width: 100%; height: 100vh; border: 0; display: block; }
+</style>
+</head>
+<body>
+<iframe id="appFrame" scrolling="yes" frameborder="0"></iframe>
+
+<script>
+  // ฐาน URL ของ Apps Script Web App (อย่าใส่ query string ต่อท้ายตรงนี้)
+  var BASE_URL = "https://script.google.com/macros/s/AKfycbxs3Y8qIgRbb5S7RB4uRaDjhiCDP5zwNaytah-eh9fdbQ_0xGq634xgYxt0vDKl1sMM/exec";
+
+  // สำคัญ: ต้องต่อ query string ที่ผู้ใช้แนบมา (เช่น ?page=checkin&id=xxx จาก QR Code
+  // หรือ ?token=...&page=approve จากลิงก์ในอีเมล) เข้ากับ URL ปลายทางเสมอ
+  // ไม่เช่นนั้นค่าพารามิเตอร์เหล่านี้จะหายไปก่อนถึงเว็บแอป และระบบเช็คอิน/auto-login จะไม่ทำงาน
+  var finalUrl = BASE_URL + window.location.search;
+
+  document.getElementById("appFrame").src = finalUrl;
+</script>
+</body>
 </html>
